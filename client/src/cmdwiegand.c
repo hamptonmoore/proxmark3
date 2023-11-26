@@ -123,9 +123,12 @@ int CmdWiegandDecode(const char *Cmd) {
         arg_param_begin,
         arg_str0("r", "raw", "<hex>", "raw hex to be decoded"),
         arg_str0("b", "bin", "<bin>", "binary string to be decoded"),
+        arg_u64_0("l", "len", "<dec>", "length of binary string (default: auto)"),
         arg_param_end
     };
     CLIExecWithReturn(ctx, Cmd, argtable, true);
+    uint32_t lenParameter = arg_get_u32_def(ctx, 3, 0);
+
     int hlen = 0;
     char hex[40] = {0};
     CLIParamStrToBuf(arg_get_str(ctx, 1), (uint8_t *)hex, sizeof(hex), &hlen);
@@ -160,7 +163,11 @@ int CmdWiegandDecode(const char *Cmd) {
     }
 
     wiegand_message_t packed = initialize_message_object(top, mid, bot, blen);
+    if (lenParameter) {
+        packed.Length = lenParameter;
+    }
     HIDTryUnpack(&packed);
+
     return PM3_SUCCESS;
 }
 

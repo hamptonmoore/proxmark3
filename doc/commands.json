@@ -12027,7 +12027,8 @@
             "options": [
                 "-h, --help This help",
                 "-r, --raw <hex> raw hex to be decoded",
-                "-b, --bin <bin> binary string to be decoded"
+                "-b, --bin <bin> binary string to be decoded",
+                "-l, --len <dec> length of binary string (default: auto)"
             ],
             "usage": "wiegand decode [-h] [-r <hex>] [-b <bin>]"
         },

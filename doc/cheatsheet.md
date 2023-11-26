@@ -421,6 +421,7 @@ Options
 -p, --parity                   ignore invalid parity
 -r, --raw <hex>                raw hex to be decoded
 -b, --bin <bin>                binary string to be decoded
+-b, --len <dec>                length of binary string (default: auto)
 
 pm3 --> wiegand decode --raw 2006f623ae
 ```
